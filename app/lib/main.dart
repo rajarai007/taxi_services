@@ -1,125 +1,268 @@
+import 'package:app/dashboard.dart';
+import 'package:app/utils/app_theme.dart';
 import 'package:flutter/material.dart';
+import 'dart:async';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MaterialApp(debugShowCheckedModeBanner: false, home: DashboardPage()));
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  // This widget is the root of your application.
+class TravelApp extends StatefulWidget {
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // TRY THIS: Try running your application with "flutter run". You'll see
-        // the application has a purple toolbar. Then, without quitting the app,
-        // try changing the seedColor in the colorScheme below to Colors.green
-        // and then invoke "hot reload" (save your changes or press the "hot
-        // reload" button in a Flutter-supported IDE, or press "r" if you used
-        // the command line to start the app).
-        //
-        // Notice that the counter didn't reset back to zero; the application
-        // state is not lost during the reload. To reset the state, use hot
-        // restart instead.
-        //
-        // This works for code too, not just values: Most code changes can be
-        // tested with just a hot reload.
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
-    );
+  _TravelAppState createState() => _TravelAppState();
+}
+
+class _TravelAppState extends State<TravelApp> {
+  final PageController _pageController = PageController();
+  int _currentPage = 0;
+  Timer? _timer;
+
+  final List<String> backgroundImages = [
+    'assets/images/women.png',
+    'assets/images/girl.png',
+    'assets/images/redwomen.png',
+    'assets/images/mathura.png',
+  ];
+
+  @override
+  void initState() {
+    super.initState();
+    _startAutoScroll();
   }
-}
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
+  void _startAutoScroll() {
+    _timer = Timer.periodic(const Duration(seconds: 3), (Timer timer) {
+      if (_currentPage < backgroundImages.length - 1) {
+        _currentPage++;
+      } else {
+        _currentPage = 0;
+      }
+      _pageController.animateToPage(
+        _currentPage,
+        duration: const Duration(milliseconds: 800),
+        curve: Curves.easeInOut,
+      );
     });
   }
 
   @override
+  void dispose() {
+    _timer?.cancel();
+    _pageController.dispose();
+    super.dispose();
+  }
+
+  // void _launchWhatsApp() async {
+  //   final url = 'https://wa.me/your_number';
+  //   if (await canLaunch(url)) {
+  //     await launch(url);
+  //   }
+  // }
+
+  // void _launchCall() async {
+  //   final url = 'tel:your_number';
+  //   if (await canLaunch(url)) {
+  //     await launch(url);
+  //   }
+  // }
+
+  @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
     return Scaffold(
-      appBar: AppBar(
-        // TRY THIS: Try changing the color here to a specific color (to
-        // Colors.amber, perhaps?) and trigger a hot reload to see the AppBar
-        // change color while the other colors stay the same.
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
-      ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          //
-          // TRY THIS: Invoke "debug painting" (choose the "Toggle Debug Paint"
-          // action in the IDE, or press "p" in the console), to see the
-          // wireframe for each widget.
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
+      // appBar: AppBar(
+      //   backgroundColor: AppTheme.colorGreyDark,
+      //   actions: [],
+      // ),
+      body: Stack(
+        children: [
+          Row(
+            children: [
+              Container(
+                margin: EdgeInsets.only(top: 10),
+                child: TextButton(
+                  onPressed: () {},
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all(Colors.green),
+                    shape: MaterialStateProperty.all(
+                      RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(
+                            12), // Adjust the value as needed
+                      ),
+                    ),
+                  ),
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 5, vertical: 5),
+                    child: Text(
+                      'BOOK NOW',
+                      style: TextStyle(fontSize: 18, color: AppTheme.white),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+
+          // Background PageView
+          PageView.builder(
+            controller: _pageController,
+            itemCount: backgroundImages.length,
+            onPageChanged: (int page) {
+              setState(() {
+                _currentPage = page;
+              });
+            },
+            itemBuilder: (context, index) {
+              return Image.asset(
+                backgroundImages[index],
+                fit: BoxFit.cover,
+              );
+            },
+          ),
+
+          // Main Content
+          SingleChildScrollView(
+            child: Column(
+              children: [
+                // Logo
+                Padding(
+                  padding: const EdgeInsets.all(16),
+                  child: Image.asset(
+                    'assets/logo.png',
+                    height: 60,
+                  ),
+                ),
+
+                // Main Title
+                Container(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 40),
+                  child: const Column(
+                    children: [
+                      Text(
+                        'Delhi To Agra\nMathura\nVrindavan',
+                        style: TextStyle(
+                          fontSize: 40,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                      SizedBox(height: 20),
+                      Text(
+                        'Book Agra tour now! Starting at ₹6000 for unforgettable memories',
+                        style: TextStyle(
+                          fontSize: 18,
+                          color: Colors.white,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                    ],
+                  ),
+                ),
+
+                // Book Now Button
+                ElevatedButton(
+                  onPressed: () {},
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.green,
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 50, vertical: 15),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30),
+                    ),
+                  ),
+                  child: const Text(
+                    'BOOK NOW',
+                    style: TextStyle(fontSize: 18),
+                  ),
+                ),
+
+                // Amazing Destinations Section
+                Container(
+                  margin: const EdgeInsets.all(20),
+                  padding: const EdgeInsets.all(20),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(15),
+                  ),
+                  child: Column(
+                    children: [
+                      Image.asset(
+                        'assets/globe_icon.png',
+                        height: 80,
+                      ),
+                      const Text(
+                        'AMAZING DESTINATIONS',
+                        style: TextStyle(
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      const Text(
+                        'Discover Amazing Destinations Filled with Adventure',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(fontSize: 16),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
             ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
+          ),
+
+          // Floating Buttons
+          Positioned(
+            right: 20,
+            bottom: 100,
+            child: Column(
+              children: [
+                // Instant Call Back Button
+                Container(
+                  margin: const EdgeInsets.only(bottom: 10),
+                  child: ElevatedButton(
+                    // onPressed: _launchCall,
+                    onPressed: () {},
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color(0xFF8B4513),
+                      padding: const EdgeInsets.all(15),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                    ),
+                    child: const Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Icon(Icons.phone),
+                        SizedBox(width: 8),
+                        Text('Instant Call Back'),
+                      ],
+                    ),
+                  ),
+                ),
+
+                // WhatsApp Button
+                FloatingActionButton(
+                  // onPressed: _launchWhatsApp,
+                  onPressed: () {},
+                  backgroundColor: Colors.green,
+                  child: const Icon(Icons.whatshot_sharp),
+                ),
+
+                // Call Button
+                Container(
+                  margin: const EdgeInsets.only(top: 10),
+                  child: FloatingActionButton(
+                    // onPressed: _launchCall,
+                    onPressed: () {},
+                    backgroundColor: Colors.green,
+                    child: const Icon(Icons.phone),
+                  ),
+                ),
+              ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
