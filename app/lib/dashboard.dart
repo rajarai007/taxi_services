@@ -185,38 +185,51 @@ class _DashboardPageState extends State<DashboardPage> {
                           ),
                         ))),
                 // The rest of the content (more cards),
-                Container(
-                  decoration: BoxDecoration(
-                    color: AppTheme.white,
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  margin: const EdgeInsets.only(top: 390),
-                  child: Column(
-                    children: [
-                      Image.asset("assets/images/globle.png"),
-                      const SizedBox(height: 10),
-                      const Text(
-                        'AMAZING DESTINATIONS',
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: AppTheme.white,
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    margin: const EdgeInsets.only(top: 360),
+                    child: Column(
+                      children: [
+                        SizedBox(
+                          height: 10,
                         ),
-                      ),
-                      const SizedBox(height: 10),
-                      const Text(
-                        'Discover Amazing Destinations Filled with Wonder and Beauty!',
-                        style: TextStyle(fontSize: 14),
-                        textAlign: TextAlign.center,
-                      ),
-                      Container(
-                        decoration: const BoxDecoration(
-                            color: AppTheme.colorGreen,
-                            borderRadius: BorderRadius.only(
-                                bottomLeft: Radius.circular(12),
-                                bottomRight: Radius.circular(12))),
-                        height: 10,
-                      )
-                    ],
+                        Image.asset(
+                          "assets/images/travel.png",
+                          width: 120,
+                        ),
+                        const SizedBox(height: 10),
+                        const Text(
+                          'AMAZING DESTINATIONS',
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        const SizedBox(height: 10),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 10),
+                          child: Text(
+                            'Discover Amazing Destinations Filled with Wonder and Beauty!',
+                            style: TextStyle(fontSize: 14),
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                        const SizedBox(height: 10),
+                        Container(
+                          decoration: const BoxDecoration(
+                              color: AppTheme.colorGreen,
+                              borderRadius: BorderRadius.only(
+                                  bottomLeft: Radius.circular(12),
+                                  bottomRight: Radius.circular(12))),
+                          height: 10,
+                        )
+                      ],
+                    ),
                   ),
                 ),
               ],
