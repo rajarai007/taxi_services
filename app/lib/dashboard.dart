@@ -121,12 +121,31 @@ class _DashboardPageState extends State<DashboardPage> {
                   right: 20,
                   child: Container(
                     padding: const EdgeInsets.symmetric(
-                        horizontal: 20, vertical: 20),
+                      horizontal: 20,
+                    ),
                     child: const Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Text(
-                          'Delhi To Agra\nMathura\nVrindavan',
+                          'Delhi To Agra',
+                          style: TextStyle(
+                            fontSize: 50,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                        Text(
+                          'Mathura',
+                          style: TextStyle(
+                            fontSize: 50,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                        Text(
+                          'Vrindavan',
                           style: TextStyle(
                             fontSize: 50,
                             fontWeight: FontWeight.bold,
@@ -192,7 +211,7 @@ class _DashboardPageState extends State<DashboardPage> {
                       color: AppTheme.white,
                       borderRadius: BorderRadius.circular(12),
                     ),
-                    margin: const EdgeInsets.only(top: 360),
+                    margin: const EdgeInsets.only(top: 380),
                     child: Column(
                       children: [
                         SizedBox(
