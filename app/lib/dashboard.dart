@@ -271,12 +271,12 @@ class _DashboardPageState extends State<DashboardPage> {
                       height: 10,
                     ),
                     Image.asset(
-                      "assets/images/travel.png",
+                      "assets/images/hasslefree.png",
                       width: 120,
                     ),
                     const SizedBox(height: 10),
                     const Text(
-                      'AMAZING DESTINATIONS',
+                      'Hassle Free Trips',
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
@@ -286,7 +286,7 @@ class _DashboardPageState extends State<DashboardPage> {
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 10),
                       child: Text(
-                        'Discover Amazing Destinations Filled with Wonder and Beauty!',
+                        'Enjoy Hassle-Free Trips with Comfort and Ease!',
                         style: TextStyle(fontSize: 14),
                         textAlign: TextAlign.center,
                       ),
@@ -304,6 +304,107 @@ class _DashboardPageState extends State<DashboardPage> {
                 ),
               ),
             ),
+            SizedBox(
+              height: 20,
+            ),
+
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Container(
+                decoration: BoxDecoration(
+                  color: AppTheme.white,
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: Column(
+                  children: [
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Image.asset(
+                      "assets/images/calendert.png",
+                      width: 120,
+                    ),
+                    const SizedBox(height: 10),
+                    const Text(
+                      'Super Fast Booking',
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                      child: Text(
+                        'Super Fast Booking: Call or WhatsApp Instantly Now!',
+                        style: TextStyle(fontSize: 14),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+                    Container(
+                      decoration: const BoxDecoration(
+                          color: AppTheme.colorGreen,
+                          borderRadius: BorderRadius.only(
+                              bottomLeft: Radius.circular(12),
+                              bottomRight: Radius.circular(12))),
+                      height: 10,
+                    )
+                  ],
+                ),
+              ),
+            ),
+
+            SizedBox(
+              height: 20,
+            ),
+
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Container(
+                decoration: BoxDecoration(
+                  color: AppTheme.white,
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: Column(
+                  children: [
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Image.asset(
+                      "assets/images/suitcase.png",
+                      width: 120,
+                    ),
+                    const SizedBox(height: 10),
+                    const Text(
+                      'Friendly tour guide',
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                      child: Text(
+                        'Explore with a Knowledgeable and Friendly Tour Guide!',
+                        style: TextStyle(fontSize: 14),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+                    Container(
+                      decoration: const BoxDecoration(
+                          color: AppTheme.colorGreen,
+                          borderRadius: BorderRadius.only(
+                              bottomLeft: Radius.circular(12),
+                              bottomRight: Radius.circular(12))),
+                      height: 10,
+                    )
+                  ],
+                ),
+              ),
+            )
           ],
         ),
       ),
