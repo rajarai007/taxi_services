@@ -253,6 +253,57 @@ class _DashboardPageState extends State<DashboardPage> {
                 ),
               ],
             ),
+
+            SizedBox(
+              height: 20,
+            ),
+
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Container(
+                decoration: BoxDecoration(
+                  color: AppTheme.white,
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: Column(
+                  children: [
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Image.asset(
+                      "assets/images/travel.png",
+                      width: 120,
+                    ),
+                    const SizedBox(height: 10),
+                    const Text(
+                      'AMAZING DESTINATIONS',
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                      child: Text(
+                        'Discover Amazing Destinations Filled with Wonder and Beauty!',
+                        style: TextStyle(fontSize: 14),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+                    Container(
+                      decoration: const BoxDecoration(
+                          color: AppTheme.colorGreen,
+                          borderRadius: BorderRadius.only(
+                              bottomLeft: Radius.circular(12),
+                              bottomRight: Radius.circular(12))),
+                      height: 10,
+                    )
+                  ],
+                ),
+              ),
+            ),
           ],
         ),
       ),
