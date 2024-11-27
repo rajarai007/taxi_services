@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:app/utils/app_theme.dart';
+import 'package:app/utils/base_class.dart';
 import 'package:flutter/material.dart';
 
 class DashboardPage extends StatefulWidget {
@@ -9,7 +10,7 @@ class DashboardPage extends StatefulWidget {
   State<DashboardPage> createState() => _DashboardPageState();
 }
 
-class _DashboardPageState extends State<DashboardPage> {
+class _DashboardPageState extends BaseClass<DashboardPage> {
   final PageController _pageController = PageController();
   int _currentPage = 0;
   Timer? _timer;
@@ -166,43 +167,57 @@ class _DashboardPageState extends State<DashboardPage> {
                   ),
                 ),
                 // Book Now button
-                Center(
-                    child: Padding(
-                        padding: const EdgeInsets.only(top: 300),
-                        child: SizedBox(
-                          width: 140,
-                          child: TextButton(
-                            style: ButtonStyle(
-                              backgroundColor: MaterialStateProperty.all(
-                                  const Color.fromRGBO(17, 152, 100, 1)),
-                              shape: MaterialStateProperty.all(
-                                RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(12),
-                                ),
-                              ),
-                            ),
-                            onPressed: () {},
-                            child: const Padding(
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: 5, vertical: 5),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(
-                                    'BOOK NOW',
-                                    style: TextStyle(
-                                        fontSize: 15, color: Colors.white),
-                                  ),
-                                  Icon(
-                                    Icons.arrow_forward_ios_outlined,
-                                    color: Colors.white,
-                                  )
-                                ],
-                              ),
-                            ),
+
+                Padding(
+                  padding: const EdgeInsets.only(top: 340),
+                  child: Center(
+                    child: SizedBox(
+                      width: 130,
+                      child: TextButton(
+                          style: buttonStyle(
+                            backgroundColor: AppTheme.colorGreen,
+                            foregroundColor: AppTheme.black,
                           ),
-                        ))),
+                          onPressed: () {},
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 5),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  "Book Now",
+                                  style: TextStyle(color: AppTheme.white),
+                                ),
+                                Icon(
+                                  Icons.arrow_forward_ios_outlined,
+                                  color: AppTheme.white,
+                                )
+                              ],
+                            ),
+                          )),
+                    ),
+                  ),
+                ),
+
+                // Center(
+                //     child: Padding(
+                //         padding: const EdgeInsets.only(top: 300),
+                //         child: SizedBox(
+                //           width: 140,
+                //           child: TextButton(
+                //             style: ButtonStyle(
+                //               backgroundColor: MaterialStateProperty.all(
+                //                   const Color.fromRGBO(17, 152, 100, 1)),
+                //               shape: MaterialStateProperty.all(
+                //                 RoundedRectangleBorder(
+                //                   borderRadius: BorderRadius.circular(12),
+                //                 ),
+                //               ),
+                //             ),
+                //             onPressed: () {},
+                //             child:
+                //           )
+                //         ))),
                 // The rest of the content (more cards),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20),
