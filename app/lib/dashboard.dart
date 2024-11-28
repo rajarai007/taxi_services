@@ -1221,10 +1221,76 @@ class _DashboardPageState extends BaseClass<DashboardPage> {
               ),
             ),
             SizedBox(
-              height: 40,
+              height: 80,
             ),
 
-            
+            ClipRRect(
+                borderRadius: BorderRadius.circular(10),
+                child: Stack(children: [
+                  SizedBox(
+                      width: double.infinity,
+                      child: Image.asset(
+                        'assets/images/melbourne.jpeg',
+                        height: 400,
+                        fit: BoxFit.cover,
+                      )),
+                  Container(
+                    child: Column(
+                      children: [
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Center(
+                          child: Text(
+                            "Kickstart the \n New Year with\n Exclusive\n Discounts on\n Agra Tours!",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                                fontSize: 40,
+                                fontWeight: FontWeight.bold,
+                                color: AppTheme.white),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        SizedBox(
+                          width: 170,
+                          child: TextButton(
+                              style: buttonStyle(
+                                  backgroundColor: AppTheme.colorGreen,
+                                  foregroundColor: AppTheme.black,
+                                  paddingHorizontal: 15,
+                                  paddingVertical: 15),
+                              onPressed: () {},
+                              child: Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 5),
+                                child: Row(
+                                  children: [
+                                    Text(
+                                      "Book Now",
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                          color: AppTheme.white, fontSize: 20),
+                                    ),
+                                    SizedBox(
+                                      width: 10,
+                                    ),
+                                    Icon(
+                                      Icons.arrow_forward_ios_outlined,
+                                      color: AppTheme.white,
+                                    )
+                                  ],
+                                ),
+                              )),
+                        ),
+                      ],
+                    ),
+                  )
+                ])),
+
+            SizedBox(
+              height: 40,
+            )
           ],
         ),
       ),
