@@ -100,7 +100,7 @@ class _DashboardPageState extends BaseClass<DashboardPage> {
               ),
             ),
           ),
-          SizedBox(height: 300),
+          SizedBox(height: 150),
           Padding(
             padding: const EdgeInsets.only(left: 300),
             child: FloatingActionButton(
@@ -1410,16 +1410,15 @@ class _DashboardPageState extends BaseClass<DashboardPage> {
   Future<void> _makePhoneCall(BuildContext context) async {
     final phoneNumber = "+919999322925";
     final Uri phoneUri = Uri.parse('tel:$phoneNumber');
-    try {
-      if (await canLaunchUrl(phoneUri)) {
-        await launchUrl(phoneUri);
-      } else {
-        throw 'Could not launch $phoneUri';
-      }
-    } catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text("Unable to place call: $e")),
-      );
-    }
+    // try {
+    //   if (await canLaunchUrl(phoneUri)) {
+    //     await launchUrl(phoneUri);
+    //   } else {
+    //     throw 'Could not launch $phoneUri';
+    //   }
+    // } catch (e) {
+    //   ScaffoldMessenger.of(context).showSnackBar(
+    //     SnackBar(content: Text("Unable to place call: $e")),
+    //   );
   }
 }
