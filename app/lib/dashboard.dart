@@ -107,14 +107,7 @@ class _DashboardPageState extends BaseClass<DashboardPage> {
               heroTag: "phone_call",
               backgroundColor: Colors.green, // Replace with AppTheme.colorGreen
               onPressed: () async {
-                final Uri phoneUri = Uri(scheme: 'tel', path: '+919999322925');
-                if (await canLaunchUrl(phoneUri)) {
-                  await launchUrl(phoneUri);
-                } else {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(content: Text("Unable to place call")),
-                  );
-                }
+                _makePhoneCall(context);
               },
               child: Icon(Icons.phone, color: Colors.white),
             ),
@@ -125,10 +118,7 @@ class _DashboardPageState extends BaseClass<DashboardPage> {
             child: FloatingActionButton(
               heroTag: "whatsapp",
               backgroundColor: Color(0xFF25D366), // WhatsApp green
-              onPressed: () {
-                // Add your WhatsApp number here
-                // launch("https://wa.me/911234567890");
-              },
+              onPressed: () {},
               child: Icon(Icons.call, color: Colors.white),
             ),
           ),
@@ -1415,5 +1405,21 @@ class _DashboardPageState extends BaseClass<DashboardPage> {
         ),
       ),
     );
+  }
+
+  Future<void> _makePhoneCall(BuildContext context) async {
+    final phoneNumber = "+919999322925";
+    final Uri phoneUri = Uri.parse('tel:$phoneNumber');
+    try {
+      if (await canLaunchUrl(phoneUri)) {
+        await launchUrl(phoneUri);
+      } else {
+        throw 'Could not launch $phoneUri';
+      }
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text("Unable to place call: $e")),
+      );
+    }
   }
 }
