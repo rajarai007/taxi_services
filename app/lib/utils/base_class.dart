@@ -1,3 +1,4 @@
+import 'package:app/utils/app_theme.dart';
 import 'package:flutter/material.dart';
 
 abstract class BaseClass<T extends StatefulWidget> extends State<T> {
@@ -29,4 +30,10 @@ abstract class BaseClass<T extends StatefulWidget> extends State<T> {
         side: BorderSide(width: borderWidth, color: borderColor),
         backgroundColor: backgroundColor);
   }
+
+  bool isNullOrEmpty(String? data) {
+    return data == null || data == '';
+  }
+
+  Widget getPlaceHolder() => Container(color: AppTheme.colorGrey);
 }
