@@ -1,7 +1,10 @@
 import 'dart:async';
+import 'package:app/bookingform.dart';
+import 'package:app/numberform.dart';
 import 'package:app/utils/app_theme.dart';
 import 'package:app/utils/base_class.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class DashboardPage extends StatefulWidget {
   const DashboardPage({super.key});
@@ -21,6 +24,8 @@ class _DashboardPageState extends BaseClass<DashboardPage> {
     'assets/images/redwomen.png',
     'assets/images/mathura.png',
   ];
+
+  final TextEditingController _dateController = TextEditingController();
 
   @override
   void initState() {
@@ -56,6 +61,80 @@ class _DashboardPageState extends BaseClass<DashboardPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(top: 340, left: 170),
+            child: Container(
+              padding: EdgeInsets.symmetric(
+                  horizontal: 16.0), // Horizontal padding for content
+              height: 50, // Adjust height
+              decoration: BoxDecoration(
+                color: Color(0xFF8B4513), // Brown color
+                borderRadius: BorderRadius.circular(
+                    30), // Rounded edges for FAB-like appearance
+              ),
+              child: InkWell(
+                onTap: () {
+                  showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return CallBackForm();
+                    },
+                  );
+                },
+                child: Row(
+                  mainAxisSize:
+                      MainAxisSize.min, // Makes the button wrap its content
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(Icons.phone_callback, color: Colors.white),
+                    SizedBox(width: 5),
+                    Text(
+                      "Instant Callback",
+                      style: TextStyle(
+                          color: Colors.white, fontWeight: FontWeight.bold),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+          SizedBox(height: 300),
+          Padding(
+            padding: const EdgeInsets.only(left: 300),
+            child: FloatingActionButton(
+              heroTag: "phone_call",
+              backgroundColor: Colors.green, // Replace with AppTheme.colorGreen
+              onPressed: () async {
+                final Uri phoneUri = Uri(scheme: 'tel', path: '+919999322925');
+                if (await canLaunchUrl(phoneUri)) {
+                  await launchUrl(phoneUri);
+                } else {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text("Unable to place call")),
+                  );
+                }
+              },
+              child: Icon(Icons.phone, color: Colors.white),
+            ),
+          ),
+          SizedBox(height: 16),
+          Padding(
+            padding: const EdgeInsets.only(left: 300),
+            child: FloatingActionButton(
+              heroTag: "whatsapp",
+              backgroundColor: Color(0xFF25D366), // WhatsApp green
+              onPressed: () {
+                // Add your WhatsApp number here
+                // launch("https://wa.me/911234567890");
+              },
+              child: Icon(Icons.call, color: Colors.white),
+            ),
+          ),
+        ],
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       backgroundColor: AppTheme.colorGreyLight,
       body: SingleChildScrollView(
         child: Column(
@@ -81,7 +160,16 @@ class _DashboardPageState extends BaseClass<DashboardPage> {
                         ),
                       ),
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return BookingPopup(
+                            onClose: () => Navigator.of(context).pop(),
+                          );
+                        },
+                      );
+                    },
                     child: const Padding(
                       padding:
                           EdgeInsets.symmetric(horizontal: 10, vertical: 5),
@@ -128,27 +216,9 @@ class _DashboardPageState extends BaseClass<DashboardPage> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Text(
-                          'Delhi To Agra',
+                          'Delhi To\n Agra\n Mathura\n Vrindavan',
                           style: TextStyle(
-                            fontSize: 50,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
-                          ),
-                          textAlign: TextAlign.center,
-                        ),
-                        Text(
-                          'Mathura',
-                          style: TextStyle(
-                            fontSize: 50,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
-                          ),
-                          textAlign: TextAlign.center,
-                        ),
-                        Text(
-                          'Vrindavan',
-                          style: TextStyle(
-                            fontSize: 50,
+                            fontSize: 40,
                             fontWeight: FontWeight.bold,
                             color: Colors.white,
                           ),
@@ -178,7 +248,16 @@ class _DashboardPageState extends BaseClass<DashboardPage> {
                             backgroundColor: AppTheme.colorGreen,
                             foregroundColor: AppTheme.black,
                           ),
-                          onPressed: () {},
+                          onPressed: () {
+                            showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return BookingPopup(
+                                  onClose: () => Navigator.of(context).pop(),
+                                );
+                              },
+                            );
+                          },
                           child: const Padding(
                             padding: EdgeInsets.symmetric(horizontal: 5),
                             child: Row(
@@ -578,14 +657,8 @@ class _DashboardPageState extends BaseClass<DashboardPage> {
                           height: 15,
                         ),
                         Text(
-                          "DELHI TO AGRA MATHURA",
-                          style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.w900,
-                              color: Colors.orange),
-                        ),
-                        Text(
-                          "VRINDAVAN TOUR DZIRE",
+                          "DELHI TO AGRA MATHURA\n VRINDAVAN TOUR DZIRE",
+                          textAlign: TextAlign.center,
                           style: TextStyle(
                               fontSize: 18,
                               fontWeight: FontWeight.w900,
@@ -640,7 +713,16 @@ class _DashboardPageState extends BaseClass<DashboardPage> {
                                 backgroundColor: AppTheme.colorGreen,
                                 foregroundColor: AppTheme.white,
                                 paddingHorizontal: 25),
-                            onPressed: () {},
+                            onPressed: () {
+                              showDialog(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return BookingPopup(
+                                    onClose: () => Navigator.of(context).pop(),
+                                  );
+                                },
+                              );
+                            },
                             child: const Padding(
                               padding: EdgeInsets.symmetric(horizontal: 5),
                               child: Text(
@@ -677,6 +759,7 @@ class _DashboardPageState extends BaseClass<DashboardPage> {
                         ),
                         Text(
                           "Delhi Agra Mathura Vrindavan Journey by Ertiga",
+                          textAlign: TextAlign.center,
                           style: TextStyle(
                               fontSize: 18,
                               fontWeight: FontWeight.w900,
@@ -731,7 +814,16 @@ class _DashboardPageState extends BaseClass<DashboardPage> {
                                 backgroundColor: AppTheme.colorGreen,
                                 foregroundColor: AppTheme.white,
                                 paddingHorizontal: 25),
-                            onPressed: () {},
+                            onPressed: () {
+                              showDialog(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return BookingPopup(
+                                    onClose: () => Navigator.of(context).pop(),
+                                  );
+                                },
+                              );
+                            },
                             child: const Padding(
                               padding: EdgeInsets.symmetric(horizontal: 5),
                               child: Text(
@@ -767,14 +859,8 @@ class _DashboardPageState extends BaseClass<DashboardPage> {
                           height: 15,
                         ),
                         Text(
-                          "Explore Delhi, Agra, Mathura, Vrindavan in",
-                          style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.w900,
-                              color: Colors.orange),
-                        ),
-                        Text(
-                          " Style with Innova Crysta",
+                          "Explore Delhi, Agra, Mathura, Vrindavan in Style with Innova Crysta",
+                          textAlign: TextAlign.center,
                           style: TextStyle(
                               fontSize: 18,
                               fontWeight: FontWeight.w900,
@@ -829,7 +915,16 @@ class _DashboardPageState extends BaseClass<DashboardPage> {
                                 backgroundColor: AppTheme.colorGreen,
                                 foregroundColor: AppTheme.white,
                                 paddingHorizontal: 25),
-                            onPressed: () {},
+                            onPressed: () {
+                              showDialog(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return BookingPopup(
+                                    onClose: () => Navigator.of(context).pop(),
+                                  );
+                                },
+                              );
+                            },
                             child: const Padding(
                               padding: EdgeInsets.symmetric(horizontal: 5),
                               child: Text(
@@ -922,7 +1017,16 @@ class _DashboardPageState extends BaseClass<DashboardPage> {
                                 backgroundColor: AppTheme.colorGreen,
                                 foregroundColor: AppTheme.white,
                                 paddingHorizontal: 25),
-                            onPressed: () {},
+                            onPressed: () {
+                              showDialog(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return BookingPopup(
+                                    onClose: () => Navigator.of(context).pop(),
+                                  );
+                                },
+                              );
+                            },
                             child: const Padding(
                               padding: EdgeInsets.symmetric(horizontal: 5),
                               child: Text(
@@ -1259,9 +1363,25 @@ class _DashboardPageState extends BaseClass<DashboardPage> {
                               style: buttonStyle(
                                   backgroundColor: AppTheme.colorGreen,
                                   foregroundColor: AppTheme.black,
-                                  paddingHorizontal: 15,
-                                  paddingVertical: 15),
-                              onPressed: () {},
+                                  paddingHorizontal: 10,
+                                  paddingVertical: 8),
+                              onPressed: () {
+                                showDialog(
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return BookingPopup(
+                                      onClose: () =>
+                                          Navigator.of(context).pop(),
+                                    );
+                                  },
+                                );
+                                // showDialog(
+                                //   context: context,
+                                //   builder: (BuildContext context) {
+                                //     return CallBackForm();
+                                //   },
+                                // );
+                              },
                               child: Padding(
                                 padding: EdgeInsets.symmetric(horizontal: 5),
                                 child: Row(
