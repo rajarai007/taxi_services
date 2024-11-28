@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 import 'package:app/bookingform.dart';
 import 'package:app/numberform.dart';
 import 'package:app/utils/app_theme.dart';
@@ -126,8 +127,27 @@ class _DashboardPageState extends BaseClass<DashboardPage> {
             child: FloatingActionButton(
               heroTag: "whatsapp",
               backgroundColor: Color(0xFF25D366), // WhatsApp green
-              onPressed: () {},
-              child: Icon(Icons.call, color: Colors.white),
+              onPressed: () async {
+                String contactNumber = "+91 9999322925";
+
+                if (Platform.isAndroid) {
+                  final url =
+                      'whatsapp://send?phone="$contactNumber"&text="Hi I want to book a ride"';
+                  await launchUrl(Uri.parse(url));
+                } else {
+                  final url =
+                      'https://wa.me/"$contactNumber"?text=${Uri.parse("Hi i want to book a ride")}';
+                  await launchUrl(Uri.parse(url));
+                }
+              },
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(12),
+                child: Image.asset(
+                  fit: BoxFit.cover,
+                  "assets/images/whatsApp.png",
+                  width: double.infinity,
+                ),
+              ),
             ),
           ),
         ],
