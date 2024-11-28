@@ -107,7 +107,15 @@ class _DashboardPageState extends BaseClass<DashboardPage> {
               heroTag: "phone_call",
               backgroundColor: Colors.green, // Replace with AppTheme.colorGreen
               onPressed: () async {
-                _makePhoneCall(context);
+                // _makePhoneCall(context);
+                final phoneNumber = "+91 9999322925";
+
+                final Uri url = Uri(scheme: 'tel', path: phoneNumber);
+                if (await canLaunchUrl(url)) {
+                  await launchUrl(url);
+                } else {
+                  print("Can not launch");
+                }
               },
               child: Icon(Icons.phone, color: Colors.white),
             ),
